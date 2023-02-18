@@ -1,31 +1,34 @@
-package bsadlier.loginscreen.Controllers;
+package bsadlier.loginscreen;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class LoginController {
+
     @FXML
     private Button exitButton;
 
     @FXML
-    private Button loginButton;
+    private JFXButton loginButton;
+
 
     @FXML
     private Label messageLabel;
 
     @FXML
-    private PasswordField passwordField;
+    private JFXPasswordField passwordField;
 
     @FXML
-    private TextField usernameField;
+    private JFXTextField usernameField;
 
     public void setLoginButton (ActionEvent event){
         if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty()) {
@@ -37,7 +40,7 @@ public class LoginController {
 
     private void validateLogin() {
         Connection connection = DatabaseController.connectToDatabase();
-        String sqlQuery = "SELECT count(1) FROM logins WHERE username = '" + usernameField.getText() + "' AND password = '" + passwordField.getText() + "'";
+        String sqlQuery = "SELECT count(1) FROM users WHERE username = '" + usernameField.getText() + "' AND password = '" + passwordField.getText() + "'";
 
         try {
             Statement statement = connection.createStatement();

@@ -3,6 +3,7 @@ module bsadlier.loginscreen {
     requires javafx.fxml;
     requires mysql.connector.j;
     requires java.sql;
+    requires com.jfoenix;
 
 
     opens bsadlier.loginscreen to javafx.fxml;

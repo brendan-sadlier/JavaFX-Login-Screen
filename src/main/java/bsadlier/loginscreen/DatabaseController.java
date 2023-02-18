@@ -1,4 +1,4 @@
-package bsadlier.loginscreen.Controllers;
+package bsadlier.loginscreen;
 
 import java.sql.Connection;
 
