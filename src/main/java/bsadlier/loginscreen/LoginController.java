@@ -2,12 +2,17 @@ package bsadlier.loginscreen;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -48,7 +53,7 @@ public class LoginController {
 
             while (queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
-                    messageLabel.setText("Successfully Logged In");
+                    showDashboard();
                 } else {
                     messageLabel.setText("Incorrect Username or Password");
                 }
@@ -59,6 +64,16 @@ public class LoginController {
     @FXML
     private void close() {
         System.exit(0);
+    }
+
+    private void showDashboard () throws IOException {
+        loginButton.getScene().getWindow().hide();
+        Parent root = FXMLLoader.load(getClass().getResource("dashboard-view.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setTitle("Dashboard");
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
